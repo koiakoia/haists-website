@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Haists IT Consulting - Enterprise infrastructure, security, and cloud architecture consulting">
+  <title>Haists IT Consulting</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="nav-brand">Haists IT</div>
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#metrics">Infrastructure</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>Enterprise IT Infrastructure<br><span class="accent">Built for Security</span></h1>
+        <p class="hero-sub">We design, build, and manage resilient infrastructure platforms with security and compliance at the core. From hybrid cloud architecture to zero-trust networking, we deliver solutions that scale.</p>
+        <a href="#contact" class="btn-primary">Get in Touch</a>
+      </div>
+    </section>
+
+    <section id="services" class="services">
+      <div class="container">
+        <h2>Our Services</h2>
+        <div class="card-grid">
+          <div class="card">
+            <div class="card-icon">&#9881;</div>
+            <h3>Infrastructure</h3>
+            <p>Hybrid cloud platforms, IaC automation with Terraform and Ansible, container orchestration on Kubernetes/OpenShift, and GitOps-driven deployments.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">&#128274;</div>
+            <h3>Security</h3>
+            <p>NIST 800-53 compliance frameworks, SIEM deployment, zero-trust service mesh, vulnerability management, and continuous security monitoring.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">&#9729;</div>
+            <h3>Cloud Architecture</h3>
+            <p>Multi-cloud strategy, disaster recovery planning, high availability design, and cost-optimized infrastructure with automated scaling.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">&#9881;</div>
+            <h3>DevOps &amp; Automation</h3>
+            <p>CI/CD pipelines, supply chain security with image signing, automated compliance checks, and infrastructure drift detection and remediation.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="metrics" class="metrics">
+      <div class="container">
+        <h2>Live Infrastructure</h2>
+        <p class="section-sub">Real-time health metrics from our managed platform</p>
+        <div id="metrics-dashboard" class="metrics-grid">
+          <div class="metric-card loading">
+            <span class="metric-value">--</span>
+            <span class="metric-label">Loading...</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="container">
+        <h2>Contact Us</h2>
+        <p class="section-sub">Tell us about your project and we'll get back to you within 24 hours</p>
+        <form id="contact-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Name *</label>
+              <input type="text" id="name" name="name" required placeholder="Your name">
+            </div>
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" required placeholder="you@company.com">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="company">Company</label>
+              <input type="text" id="company" name="company" placeholder="Your company">
+            </div>
+            <div class="form-group">
+              <label for="interest">Area of Interest</label>
+              <select id="interest" name="interest">
+                <option value="">Select...</option>
+                <option value="Infrastructure Consulting">Infrastructure Consulting</option>
+                <option value="Security Assessment">Security Assessment</option>
+                <option value="Cloud Architecture">Cloud Architecture</option>
+                <option value="DevOps & Automation">DevOps &amp; Automation</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea id="message" name="message" required rows="5" placeholder="Tell us about your project or question..."></textarea>
+          </div>
+          <button type="submit" class="btn-primary">Send Message</button>
+          <div id="form-status" class="form-status"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Haists IT Consulting. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

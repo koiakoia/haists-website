@@ -1,0 +1,6 @@
+include:
+  - project: admin1/overwatch-gitops
+    file: /ci-templates/supply-chain-pipeline.yml
+
+variables:
+  IMAGE_NAME: sentinel/haists-website
