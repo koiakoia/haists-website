@@ -994,7 +994,8 @@ async function fetchMetrics() {
     const nodes = data.infrastructure?.nodes_healthy ?? '\u2014';
     const nodesTotal = data.infrastructure?.nodes_total ?? nodes;
     const services = data.infrastructure?.services_up ?? '\u2014';
-    const compliance = data.security?.compliance_score ?? '\u2014';
+    const compPass = data.security?.compliance_checks_pass ?? '\u2014';
+    const compTotal = data.security?.compliance_checks_total ?? '\u2014';
     const agents = data.security?.agents_active ?? '\u2014';
 
     dashboard.innerHTML = `
@@ -1007,8 +1008,8 @@ async function fetchMetrics() {
         <div class="label">Services Active</div>
       </div>
       <div class="dash-metric">
-        <div class="val">${compliance}%</div>
-        <div class="label">NIST Compliance</div>
+        <div class="val">${compPass}/${compTotal}</div>
+        <div class="label">NIST 800-53 Checks Passing</div>
       </div>
       <div class="dash-metric">
         <div class="val">${agents}</div>

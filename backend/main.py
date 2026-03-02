@@ -106,7 +106,9 @@ async def get_metrics():
         if s.get("status") == "healthy"
     )
 
-    compliance_rate = overview.get("compliance", {}).get("pass_rate", 0)
+    compliance = overview.get("compliance", {})
+    compliance_pass = compliance.get("pass_count", 0)
+    compliance_total = compliance.get("total", 0)
 
     agents_active = sum(
         1 for a in security.get("wazuh", {}).get("agents", [])
@@ -120,7 +122,8 @@ async def get_metrics():
             "services_up": services_up,
         },
         "security": {
-            "compliance_score": round(compliance_rate),
+            "compliance_checks_pass": compliance_pass,
+            "compliance_checks_total": compliance_total,
             "agents_active": agents_active,
         },
     }
