@@ -67,6 +67,8 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
 .nav-mark {
   font-family: 'Libre Baskerville', serif;
   font-size: 1.15rem;
+  text-decoration: none;
+  color: inherit;
   font-weight: 700;
   color: var(--bark);
   letter-spacing: -0.02em;
@@ -588,6 +590,29 @@ footer .f-origin {
   .services-grid { grid-template-columns: 1fr; }
   .dash-preview { grid-template-columns: 1fr 1fr; }
 }
+
+.scroll-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--field);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  line-height: 44px;
+  text-align: center;
+  box-shadow: 0 2px 12px rgba(0,0,0,.18);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s, transform .3s;
+  z-index: 999;
+}
+.scroll-top.visible { opacity: 1; pointer-events: auto; }
+.scroll-top:hover { transform: scale(1.1); }
 </style>
 </head>
 <body>
@@ -595,7 +620,7 @@ footer .f-origin {
 <!-- NAV -->
 <nav id="nav">
   <div class="nav-inner">
-    <div class="nav-mark">Haists <span>IT</span></div>
+    <a href="#" class="nav-mark">Haists <span>IT</span></a>
     <div class="nav-links">
       <a href="#problems">Who We Help</a>
       <a href="#services">Services</a>
@@ -1073,7 +1098,18 @@ if (form) {
     }
   });
 }
+
+// Scroll-to-top button
+const scrollBtn = document.getElementById('scroll-top');
+window.addEventListener('scroll', () => {
+  scrollBtn.classList.toggle('visible', window.scrollY > 600);
+});
+scrollBtn.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
 </script>
+
+<button id="scroll-top" class="scroll-top" aria-label="Scroll to top">&uarr;</button>
 
 </body>
 </html>
