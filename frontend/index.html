@@ -29,6 +29,7 @@ if(localStorage.getItem('theme')==='dark')document.documentElement.setAttribute(
   --logo-i: #2D6B4A;
   --logo-sep: #DDD5C7;
   --logo-text: #3D3425;
+  --heading: #3D3425;
   --nav-bg: rgba(250, 248, 244, 0.92);
   --input-bg: #fff;
   --surface: var(--warm-white);
@@ -49,6 +50,7 @@ if(localStorage.getItem('theme')==='dark')document.documentElement.setAttribute(
   --logo-i: #5CBA7D;
   --logo-sep: rgba(255,255,255,0.15);
   --logo-text: rgba(255,255,255,0.85);
+  --heading: #E8E2D8;
   --nav-bg: rgba(20, 18, 16, 0.92);
   --input-bg: #1E1C18;
   --surface: #1E1C18;
@@ -159,7 +161,7 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
 }
 .hero h1 {
   font-size: clamp(2rem, 5vw, 3.2rem);
-  color: var(--bark);
+  color: var(--heading);
   margin-bottom: 1.5rem;
   letter-spacing: -0.02em;
 }
@@ -222,7 +224,7 @@ section { padding: 5rem 2rem; }
 }
 .section-heading {
   font-size: clamp(1.6rem, 3.5vw, 2.2rem);
-  color: var(--bark);
+  color: var(--heading);
   margin-bottom: 1rem;
   letter-spacing: -0.01em;
 }
@@ -306,7 +308,7 @@ section { padding: 5rem 2rem; }
 .problem-card h3 {
   font-size: 1.15rem;
   margin-bottom: 0.75rem;
-  color: var(--bark);
+  color: var(--heading);
 }
 .problem-card p {
   font-size: 0.95rem;
@@ -332,7 +334,7 @@ section { padding: 5rem 2rem; }
 .service-item h3 {
   font-size: 1.05rem;
   margin-bottom: 0.6rem;
-  color: var(--bark);
+  color: var(--heading);
 }
 .service-item p {
   font-size: 0.92rem;
@@ -370,7 +372,7 @@ section { padding: 5rem 2rem; }
 .step h3 {
   font-size: 1.1rem;
   margin-bottom: 0.5rem;
-  color: var(--bark);
+  color: var(--heading);
 }
 .step p {
   font-size: 0.92rem;
@@ -453,7 +455,7 @@ section { padding: 5rem 2rem; }
 .about-callout p {
   font-family: 'Libre Baskerville', serif;
   font-size: 1rem;
-  color: var(--bark);
+  color: var(--heading);
   line-height: 1.7;
   font-style: italic;
 }
@@ -495,7 +497,7 @@ section { padding: 5rem 2rem; }
 .ag-item h4 {
   font-size: 0.95rem;
   margin-bottom: 0.25rem;
-  color: var(--bark);
+  color: var(--heading);
   font-family: 'DM Sans', sans-serif;
   font-weight: 600;
 }
