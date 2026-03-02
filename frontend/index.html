@@ -992,13 +992,14 @@ async function fetchMetrics() {
     const data = await resp.json();
 
     const nodes = data.infrastructure?.nodes_healthy ?? '\u2014';
+    const nodesTotal = data.infrastructure?.nodes_total ?? nodes;
     const services = data.infrastructure?.services_up ?? '\u2014';
     const compliance = data.security?.compliance_score ?? '\u2014';
     const agents = data.security?.agents_active ?? '\u2014';
 
     dashboard.innerHTML = `
       <div class="dash-metric">
-        <div class="val">${nodes}/${nodes}</div>
+        <div class="val">${nodes}/${nodesTotal}</div>
         <div class="label">Nodes Online</div>
       </div>
       <div class="dash-metric">

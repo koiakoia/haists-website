@@ -59,59 +59,72 @@ async def _get_token() -> str:
         return _token_cache["token"]
 
 
+async def _fetch_api(client: httpx.AsyncClient, token: str, path: str) -> dict:
+    """Fetch a single Console API endpoint. Returns empty dict on failure."""
+    try:
+        resp = await client.get(
+            f"{settings.console_api_url}{path}",
+            headers={"Authorization": f"Bearer {token}"},
+        )
+        if resp.status_code == 200:
+            return resp.json()
+        logger.warning(f"Console API {path} returned {resp.status_code}")
+    except httpx.RequestError as e:
+        logger.error(f"Console API {path} failed: {e}")
+    return {}
+
+
 @app.get("/api/metrics")
 async def get_metrics():
+    """Return sanitized, public-safe metrics. Only counts — no names, IPs, or details."""
     now = time.time()
     if _metrics_cache["data"] and _metrics_cache["expires"] > now:
         return _metrics_cache["data"]
 
     try:
         token = await _get_token()
-        async with httpx.AsyncClient(verify=False, timeout=10.0) as client:
-            resp = await client.get(
-                f"{settings.console_api_url}/api/health",
-                headers={"Authorization": f"Bearer {token}"},
-            )
-            if resp.status_code != 200:
-                logger.warning(f"Console API returned {resp.status_code}")
-                raise HTTPException(502, "Upstream unavailable")
+    except HTTPException:
+        raise HTTPException(502, "Metrics temporarily unavailable")
 
-            raw = resp.json()
-    except httpx.RequestError as e:
-        logger.error(f"Console API request failed: {e}")
-        raise HTTPException(502, "Upstream unreachable")
+    async with httpx.AsyncClient(verify=False, timeout=10.0) as client:
+        overview = await _fetch_api(client, token, "/api/overview")
+        infra = await _fetch_api(client, token, "/api/infrastructure")
+        security = await _fetch_api(client, token, "/api/security")
+
+    # Extract only the counts needed for the public dashboard — nothing else
+    nodes_online = sum(
+        1 for n in infra.get("proxmox_nodes", [])
+        if n.get("status") == "online"
+    )
+    nodes_total = len(infra.get("proxmox_nodes", []))
+
+    services_up = sum(
+        1 for s in overview.get("health", [])
+        if s.get("status") == "healthy"
+    )
+
+    compliance_rate = overview.get("compliance", {}).get("pass_rate", 0)
+
+    agents_active = sum(
+        1 for a in security.get("wazuh", {}).get("agents", [])
+        if str(a.get("status", "")).lower() == "active"
+    )
 
     sanitized = {
         "infrastructure": {
-            "nodes_healthy": _count_healthy(raw.get("proxmox", {})),
-            "services_up": _count_services(raw),
-            "uptime_pct": 99.9,
+            "nodes_healthy": nodes_online,
+            "nodes_total": nodes_total,
+            "services_up": services_up,
         },
         "security": {
-            "compliance_score": raw.get("compliance", {}).get("pass_rate", 0),
-            "agents_active": raw.get("wazuh", {}).get("agents", {}).get("active", 0),
+            "compliance_score": round(compliance_rate),
+            "agents_active": agents_active,
         },
-        "cached_at": int(now),
     }
 
     _metrics_cache["data"] = sanitized
     _metrics_cache["expires"] = now + settings.metrics_cache_ttl
     return sanitized
-
-
-def _count_healthy(proxmox_data: dict) -> int:
-    nodes = proxmox_data.get("nodes", [])
-    if isinstance(nodes, list):
-        return sum(1 for n in nodes if n.get("status") == "online")
-    return 0
-
-
-def _count_services(health_data: dict) -> int:
-    count = 0
-    for val in health_data.values():
-        if isinstance(val, dict) and val.get("status") in ("healthy", "ok", "online"):
-            count += 1
-    return count
 
 
 @app.post("/api/contact")
