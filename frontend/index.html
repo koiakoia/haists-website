@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Haists IT Consulting — Small business IT, security, and infrastructure for Wabash County, Indiana">
 <title>Haists IT Consulting — Wabash, Indiana</title>
+<link rel="icon" type="image/svg+xml" sizes="32x32" href="/favicon-32.svg">
+<link rel="icon" type="image/svg+xml" sizes="16x16" href="/favicon-16.svg">
+<script>
+(function(){var t=localStorage.getItem('theme');if(!t)t=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);})();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
 <style>
@@ -20,6 +25,33 @@
   --text: #2C2416;
   --text-light: #6B5F4E;
   --border: #DDD5C7;
+  --logo-h: #3D3425;
+  --logo-i: #2D6B4A;
+  --logo-sep: #DDD5C7;
+  --logo-text: #3D3425;
+  --nav-bg: rgba(250, 248, 244, 0.92);
+  --input-bg: #fff;
+  --surface: var(--warm-white);
+}
+[data-theme="dark"] {
+  --bark: #1A1714;
+  --soil: #2A2620;
+  --field: #3A8A60;
+  --field-light: #5CBA7D;
+  --cream: #1E1C18;
+  --warm-white: #141210;
+  --stone: #6B6354;
+  --rust: #C06A3A;
+  --text: #E8E2D8;
+  --text-light: #B8AE9C;
+  --border: #2E2A24;
+  --logo-h: rgba(255,255,255,0.85);
+  --logo-i: #5CBA7D;
+  --logo-sep: rgba(255,255,255,0.15);
+  --logo-text: rgba(255,255,255,0.85);
+  --nav-bg: rgba(20, 18, 16, 0.92);
+  --input-bg: #1E1C18;
+  --surface: #1E1C18;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -33,6 +65,7 @@ body {
   line-height: 1.7;
   font-size: 17px;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 h1, h2, h3, h4 {
@@ -50,10 +83,10 @@ nav {
   top: 0;
   width: 100%;
   z-index: 100;
-  background: rgba(250, 248, 244, 0.92);
+  background: var(--nav-bg);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
-  transition: box-shadow 0.3s;
+  transition: box-shadow 0.3s, background-color 0.3s, border-color 0.3s;
 }
 nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
 .nav-inner {
@@ -65,16 +98,32 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
   justify-content: space-between;
 }
 .nav-mark {
-  font-family: 'Libre Baskerville', serif;
-  font-size: 1.15rem;
+  display: flex;
+  align-items: center;
   text-decoration: none;
-  color: inherit;
-  font-weight: 700;
-  color: var(--bark);
-  letter-spacing: -0.02em;
+  line-height: 1;
 }
-.nav-mark span { color: var(--field); }
+.nav-mark svg { height: 28px; width: auto; }
 .nav-links { display: flex; gap: 2rem; align-items: center; }
+.theme-toggle {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 0.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+.theme-toggle:hover { border-color: var(--stone); background: var(--cream); }
+.theme-toggle svg { width: 18px; height: 18px; }
+.theme-toggle .icon-sun { display: none; }
+.theme-toggle .icon-moon { display: block; color: var(--text-light); }
+[data-theme="dark"] .theme-toggle .icon-sun { display: block; color: var(--text-light); }
+[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
 .nav-links a {
   font-size: 0.88rem;
   font-weight: 500;
@@ -499,9 +548,9 @@ section { padding: 5rem 2rem; }
   padding: 0.85rem 1rem;
   border: 1px solid var(--border);
   border-radius: 8px;
-  background: #fff;
+  background: var(--input-bg);
   color: var(--text);
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, background-color 0.3s, color 0.3s;
   width: 100%;
 }
 .contact-form input:focus,
@@ -571,6 +620,29 @@ footer .f-origin {
 }
 .certs-grid > div { flex-shrink: 0; }
 
+/* --- DARK MODE OVERRIDES --- */
+.problem-card,
+.service-item,
+.about-callout,
+.ag-icon,
+.service-tag,
+section,
+.certs-section {
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+[data-theme="dark"] .problem-card { background: var(--surface); }
+[data-theme="dark"] .service-item { background: var(--surface); }
+[data-theme="dark"] .services-grid { background: var(--border); }
+[data-theme="dark"] .about-callout { background: var(--surface); }
+[data-theme="dark"] .service-tag { background: rgba(58, 138, 96, 0.15); }
+[data-theme="dark"] .ag-icon { background: rgba(58, 138, 96, 0.15); }
+[data-theme="dark"] .problem-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+[data-theme="dark"] .form-status.success { background: rgba(58, 138, 96, 0.15); }
+[data-theme="dark"] .form-status.error { background: rgba(192, 106, 58, 0.15); }
+[data-theme="dark"] .contact-form select option { background: var(--surface); color: var(--text); }
+[data-theme="dark"] .btn-secondary { color: var(--text-light); border-color: var(--border); }
+[data-theme="dark"] .btn-secondary:hover { border-color: var(--stone); }
+
 /* --- ANIMATIONS --- */
 .reveal {
   opacity: 0;
@@ -583,6 +655,7 @@ footer .f-origin {
 }
 
 /* --- RESPONSIVE --- */
+.nav-right { display: flex; align-items: center; gap: 1rem; }
 @media (max-width: 768px) {
   .nav-links { display: none; }
   .hero { padding: 8rem 1.5rem 3rem; }
@@ -631,13 +704,30 @@ footer .f-origin {
 <!-- NAV -->
 <nav id="nav">
   <div class="nav-inner">
-    <a href="#" class="nav-mark">Haists <span>IT</span></a>
-    <div class="nav-links">
-      <a href="#problems">Who We Help</a>
-      <a href="#services">Services</a>
-      <a href="#ag">Agriculture</a>
-      <a href="#about">About</a>
-      <a href="#contact" class="nav-cta">Get Started</a>
+    <a href="#" class="nav-mark" aria-label="Haists IT — Home">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 36" fill="none">
+        <rect x="0" y="6" width="4.5" height="24" fill="var(--logo-h)"/>
+        <rect x="0" y="15" width="14" height="4" fill="var(--logo-h)"/>
+        <rect x="10.5" y="6" width="4.5" height="24" fill="var(--logo-h)"/>
+        <rect x="19" y="6" width="4.5" height="24" fill="var(--logo-i)"/>
+        <circle cx="21.25" cy="2.5" r="2.5" fill="#D4883A"/>
+        <line x1="32" y1="8" x2="32" y2="28" stroke="var(--logo-sep)" stroke-width="0.75"/>
+        <text x="42" y="24" font-family="'Libre Baskerville', serif" font-weight="700" font-size="16" fill="var(--logo-text)" letter-spacing="0.5">Haists</text>
+        <text x="120" y="24" font-family="'Libre Baskerville', serif" font-weight="700" font-size="16" fill="var(--logo-i)" letter-spacing="0.5">IT</text>
+      </svg>
+    </a>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="#problems">Who We Help</a>
+        <a href="#services">Services</a>
+        <a href="#ag">Agriculture</a>
+        <a href="#about">About</a>
+        <a href="#contact" class="nav-cta">Get Started</a>
+      </div>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
     </div>
   </div>
 </nav>
@@ -1005,6 +1095,8 @@ footer .f-origin {
   </div>
 </section>
 
+<button id="scroll-top" class="scroll-top" aria-label="Scroll to top">&uarr;</button>
+
 <!-- FOOTER -->
 <footer>
   <div class="f-mark">Haists IT Consulting</div>
@@ -1133,9 +1225,21 @@ window.addEventListener('scroll', () => {
 scrollBtn.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
-</script>
 
-<button id="scroll-top" class="scroll-top" aria-label="Scroll to top">&uarr;</button>
+// Theme toggle
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+});
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+  if (!localStorage.getItem('theme')) {
+    document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+  }
+});
+</script>
 
 </body>
 </html>
