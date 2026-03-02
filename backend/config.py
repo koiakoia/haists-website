@@ -19,4 +19,7 @@ class Settings(BaseSettings):
     # Cache TTL for metrics (seconds)
     metrics_cache_ttl: int = 300
 
+    # Cache TTL for work log (seconds)
+    worklog_cache_ttl: int = 900
+
     model_config = {"env_prefix": "HW_"}

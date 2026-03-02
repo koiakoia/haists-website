@@ -15,6 +15,7 @@ logger = logging.getLogger("haists-website")
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 
 _metrics_cache: dict = {"data": None, "expires": 0}
+_worklog_cache: dict = {"data": None, "expires": 0}
 _token_cache: dict = {"token": None, "expires": 0}
 
 
@@ -131,6 +132,33 @@ async def get_metrics():
     _metrics_cache["data"] = sanitized
     _metrics_cache["expires"] = now + settings.metrics_cache_ttl
     return sanitized
+
+
+@app.get("/api/work-log")
+async def get_work_log():
+    """Return sanitized work log entries proxied from Overwatch Console API."""
+    now = time.time()
+    if _worklog_cache["data"] and _worklog_cache["expires"] > now:
+        return _worklog_cache["data"]
+
+    try:
+        token = await _get_token()
+    except HTTPException:
+        if _worklog_cache["data"]:
+            return _worklog_cache["data"]
+        return {"entries": [], "generated_at": ""}
+
+    async with httpx.AsyncClient(verify=False, timeout=20.0) as client:
+        data = await _fetch_api(client, token, "/api/worklog")
+
+    if data and "entries" in data:
+        _worklog_cache["data"] = data
+        _worklog_cache["expires"] = now + settings.worklog_cache_ttl
+        return data
+
+    if _worklog_cache["data"]:
+        return _worklog_cache["data"]
+    return {"entries": [], "generated_at": ""}
 
 
 @app.post("/api/contact")

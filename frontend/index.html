@@ -432,6 +432,75 @@ section { padding: 5rem 2rem; }
   font-style: italic;
 }
 
+/* --- WORK LOG --- */
+.changelog-section {
+  background: var(--cream);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  transition: background-color 0.3s, border-color 0.3s;
+}
+.changelog-list {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+}
+.changelog-entry {
+  display: grid;
+  grid-template-columns: 140px 78px 1fr;
+  gap: 1.2rem;
+  align-items: baseline;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border);
+  transition: border-color 0.3s;
+}
+.changelog-entry:last-child { border-bottom: none; }
+.cl-date {
+  font-size: 0.85rem;
+  color: var(--stone);
+  font-weight: 500;
+  white-space: nowrap;
+}
+.cl-tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  padding: 0.25rem 0.55rem;
+  border-radius: 4px;
+  text-align: center;
+  white-space: nowrap;
+}
+.cl-tag.patch {
+  background: rgba(45, 107, 74, 0.1);
+  color: var(--field);
+}
+.cl-tag.detect {
+  background: rgba(180, 140, 40, 0.1);
+  color: #8B6914;
+}
+.cl-tag.upgrade {
+  background: rgba(74, 111, 165, 0.1);
+  color: #4A6FA5;
+}
+.cl-tag.response {
+  background: rgba(160, 82, 45, 0.1);
+  color: var(--rust);
+}
+.cl-desc {
+  font-size: 0.92rem;
+  color: var(--text-light);
+  line-height: 1.6;
+}
+.cl-desc em {
+  color: var(--stone);
+  font-size: 0.85rem;
+}
+[data-theme="dark"] .cl-tag.patch { background: rgba(58, 138, 96, 0.15); }
+[data-theme="dark"] .cl-tag.detect { background: rgba(200, 165, 60, 0.12); color: #C4A53C; }
+[data-theme="dark"] .cl-tag.upgrade { background: rgba(90, 130, 190, 0.12); color: #7AA3D4; }
+[data-theme="dark"] .cl-tag.response { background: rgba(192, 106, 58, 0.15); }
+
 /* --- ABOUT / PHILOSOPHY --- */
 .about-split {
   display: grid;
@@ -669,6 +738,8 @@ section,
   .proof-inner { flex-direction: column; gap: 0.75rem; }
   .proof-sep { display: none; }
   section { padding: 3.5rem 1.5rem; }
+  .changelog-entry { grid-template-columns: 1fr; gap: 0.4rem; }
+  .cl-tag { justify-self: start; }
 }
 
 @media (max-width: 480px) {
@@ -724,6 +795,7 @@ section,
         <a href="#services">Services</a>
         <a href="#ag">Agriculture</a>
         <a href="#about">About</a>
+        <a href="#log">Log</a>
         <a href="#contact" class="nav-cta">Get Started</a>
       </div>
       <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
@@ -1005,6 +1077,25 @@ section,
   </div>
 </section>
 
+<!-- WORK LOG -->
+<section class="changelog-section" id="log">
+  <div class="section-inner">
+    <div class="section-label reveal">Work log</div>
+    <h2 class="section-heading reveal">What we've been doing on our own systems</h2>
+    <p class="section-sub reveal">
+      Real entries from our infrastructure. This is what operational discipline
+      looks like &mdash; not a marketing page, just the work.
+    </p>
+    <div class="changelog-list reveal" id="work-log-list">
+      <div class="changelog-entry">
+        <div class="cl-date">Loading...</div>
+        <div class="cl-tag patch">Patch</div>
+        <div class="cl-desc">Fetching recent activity from live infrastructure...</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ABOUT -->
 <section id="about">
   <div class="section-inner">
@@ -1168,6 +1259,31 @@ async function fetchMetrics() {
 
 fetchMetrics();
 setInterval(fetchMetrics, 300000);
+
+// Work log
+const _esc = s => { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; };
+const _validTags = new Set(['patch', 'detect', 'upgrade', 'response']);
+async function fetchWorkLog() {
+  const list = document.getElementById('work-log-list');
+  if (!list) return;
+  try {
+    const resp = await fetch('/api/work-log');
+    if (!resp.ok) throw new Error('Failed');
+    const data = await resp.json();
+    if (!data.entries || !data.entries.length) return;
+    list.innerHTML = data.entries.map(e => {
+      const tag = _validTags.has(e.tag) ? e.tag : 'patch';
+      return `
+      <div class="changelog-entry">
+        <div class="cl-date">${_esc(e.date)}</div>
+        <div class="cl-tag ${tag}">${_esc(tag.charAt(0).toUpperCase() + tag.slice(1))}</div>
+        <div class="cl-desc">${_esc(e.description)}${e.detail ? ' <em>' + _esc(e.detail) + '</em>' : ''}</div>
+      </div>`;
+    }).join('');
+  } catch (e) { /* keep static fallback */ }
+}
+fetchWorkLog();
+setInterval(fetchWorkLog, 900000);
 
 // Contact form handler
 const form = document.getElementById('contact-form');
