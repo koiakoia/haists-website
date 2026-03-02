@@ -1,131 +1,374 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Haists IT Consulting - Enterprise infrastructure, security, and cloud architecture consulting">
-  <title>Haists IT Consulting</title>
-  <link rel="stylesheet" href="/css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Haists IT Consulting — Small business IT, security, and infrastructure for Wabash County, Indiana">
+<title>Haists IT Consulting — Wabash, Indiana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  <header>
-    <nav>
-      <div class="nav-brand">Haists</div>
-      <div class="nav-links">
-        <a href="#services">Services</a>
-        <a href="#metrics">Infrastructure</a>
-        <a href="#contact">Contact</a>
-      </div>
-    </nav>
-  </header>
 
-  <main>
-    <section class="hero">
-      <div class="container">
-        <span class="hero-label">IT Consulting &amp; Infrastructure</span>
-        <h1>Enterprise Systems<br><em>Built for Security</em></h1>
-        <p class="hero-sub">We design, build, and manage resilient infrastructure platforms with security and compliance at the core. From hybrid cloud architecture to zero-trust networking.</p>
-        <a href="#contact" class="btn-primary">Get in Touch</a>
-      </div>
-    </section>
-
-    <section id="services" class="services">
-      <div class="container">
-        <div class="section-header">
-          <hr class="section-rule">
-          <h2>Services</h2>
-          <p class="section-sub">Consulting, architecture, and managed operations for organisations that take infrastructure seriously.</p>
-        </div>
-        <div class="card-grid">
-          <div class="card">
-            <span class="card-number">01</span>
-            <h3>Infrastructure</h3>
-            <p>Hybrid cloud platforms, IaC automation with Terraform and Ansible, container orchestration on Kubernetes and OpenShift, and GitOps-driven deployments.</p>
-          </div>
-          <div class="card">
-            <span class="card-number">02</span>
-            <h3>Security</h3>
-            <p>NIST 800-53 compliance frameworks, SIEM deployment, zero-trust service mesh, vulnerability management, and continuous security monitoring.</p>
-          </div>
-          <div class="card">
-            <span class="card-number">03</span>
-            <h3>Cloud Architecture</h3>
-            <p>Multi-cloud strategy, disaster recovery planning, high availability design, and cost-optimised infrastructure with automated scaling.</p>
-          </div>
-          <div class="card">
-            <span class="card-number">04</span>
-            <h3>DevOps &amp; Automation</h3>
-            <p>CI/CD pipelines, supply chain security with image signing, automated compliance checks, and infrastructure drift detection and remediation.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="metrics" class="metrics">
-      <div class="container">
-        <hr class="section-rule">
-        <h2>Live Infrastructure</h2>
-        <p class="section-sub">Real-time health metrics from our managed platform.</p>
-        <div id="metrics-dashboard" class="metrics-grid">
-          <div class="metric-card loading">
-            <span class="metric-value">--</span>
-            <span class="metric-label">Loading</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="contact">
-      <div class="container">
-        <hr class="section-rule">
-        <h2>Get in Touch</h2>
-        <p class="section-sub">Tell us about your project and we'll respond within 24 hours.</p>
-        <form id="contact-form">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="name">Name *</label>
-              <input type="text" id="name" name="name" required placeholder="Your name">
-            </div>
-            <div class="form-group">
-              <label for="email">Email *</label>
-              <input type="email" id="email" name="email" required placeholder="you@company.com">
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="company">Company</label>
-              <input type="text" id="company" name="company" placeholder="Your company">
-            </div>
-            <div class="form-group">
-              <label for="interest">Area of Interest</label>
-              <select id="interest" name="interest">
-                <option value="">Select...</option>
-                <option value="Infrastructure Consulting">Infrastructure Consulting</option>
-                <option value="Security Assessment">Security Assessment</option>
-                <option value="Cloud Architecture">Cloud Architecture</option>
-                <option value="DevOps & Automation">DevOps &amp; Automation</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="message">Message *</label>
-            <textarea id="message" name="message" required rows="5" placeholder="Tell us about your project..."></textarea>
-          </div>
-          <button type="submit" class="btn-primary">Send Message</button>
-          <div id="form-status" class="form-status"></div>
-        </form>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <span class="footer-mark">Haists</span>
-      <p>&copy; 2026 Haists IT Consulting</p>
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <div class="nav-mark">Haists <span>IT</span></div>
+    <div class="nav-links">
+      <a href="#problems">Who We Help</a>
+      <a href="#services">Services</a>
+      <a href="#ag">Agriculture</a>
+      <a href="#about">About</a>
+      <a href="#contact" class="nav-cta">Get Started</a>
     </div>
-  </footer>
+  </div>
+</nav>
 
-  <script src="/js/main.js"></script>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-locale reveal">Wabash, Indiana &mdash; Since the first light</div>
+  <h1 class="reveal">Your business runs on technology.<br><em>Who's watching it?</em></h1>
+  <p class="hero-sub reveal">
+    Most small businesses don't have an IT person. They have a nephew, a
+    best guess, and a password that hasn't changed in three years. We fix that.
+  </p>
+  <div class="hero-actions reveal">
+    <a href="#contact" class="btn-primary">Free 30-Minute Walkthrough</a>
+    <a href="#problems" class="btn-secondary">See If This Is You</a>
+  </div>
+</section>
+
+<!-- PROOF BAR -->
+<div class="proof-bar">
+  <div class="proof-inner" id="proof-bar-content">
+    <div class="proof-badge">
+      <div class="dot"></div>
+      Our own systems: <strong>&nbsp;99.7% uptime</strong>
+    </div>
+    <div class="proof-sep"></div>
+    <div class="proof-badge">
+      <strong>276</strong>&nbsp;security controls monitored
+    </div>
+    <div class="proof-sep"></div>
+    <div class="proof-badge">
+      <strong>Security+</strong>&nbsp;certified
+    </div>
+    <div class="proof-sep"></div>
+    <div class="proof-badge">
+      Live dashboard &mdash; <strong>we eat our own cooking</strong>
+    </div>
+  </div>
+</div>
+
+<!-- PROBLEMS -->
+<section class="problems" id="problems">
+  <div class="section-inner">
+    <div class="section-label reveal">Sound familiar?</div>
+    <h2 class="section-heading reveal">Real problems we solve for businesses like yours</h2>
+    <p class="section-sub reveal">
+      We work with downtown shops, restaurants, farms, and offices across Wabash County.
+      These are the things people actually call us about.
+    </p>
+    <div class="problems-grid">
+      <div class="problem-card reveal">
+        <div class="problem-who">Restaurants &amp; Bars</div>
+        <h3>&ldquo;The card reader went down during Friday dinner rush&rdquo;</h3>
+        <p>Your POS, your Wi-Fi, your online ordering &mdash; they're all connected, and when one breaks,
+        you lose real money by the hour. We set them up so they don't break, and when something
+        does go wrong, you call one number.</p>
+      </div>
+      <div class="problem-card reveal">
+        <div class="problem-who">Farms &amp; Ag Operations</div>
+        <h3>&ldquo;I've got six apps, three logins, and no idea who has my yield data&rdquo;</h3>
+        <p>Between John Deere Operations Center, your grain elevator's Bushel app, soil sensors,
+        and the office computer running QuickBooks &mdash; nobody's managing any of it as one system.
+        Your farm data is valuable. It should be organized and protected like it is.</p>
+      </div>
+      <div class="problem-card reveal">
+        <div class="problem-who">Downtown Shops &amp; Boutiques</div>
+        <h3>&ldquo;My nephew set up the Wi-Fi three years ago&rdquo;</h3>
+        <p>Your customers are on the same network as your card processing. Your security cameras
+        use the default password. Your laptop hasn't been updated since you opened. These are
+        small fixes that prevent big problems.</p>
+      </div>
+      <div class="problem-card reveal">
+        <div class="problem-who">Small Offices</div>
+        <h3>&ldquo;If this computer dies, I lose everything&rdquo;</h3>
+        <p>Accountants, insurance agents, real estate offices &mdash; you have client files that can't
+        disappear. We set up real backups, lock down who can get to what, and make sure
+        your client data stays your client data.</p>
+      </div>
+      <div class="problem-card reveal">
+        <div class="problem-who">Tourism &amp; Events</div>
+        <h3>&ldquo;We process thousands of tickets and have no idea if we're secure&rdquo;</h3>
+        <p>If you take credit cards and handle customer information, you have a responsibility
+        to protect it. We help you actually meet that bar without turning your operation upside down.</p>
+      </div>
+      <div class="problem-card reveal">
+        <div class="problem-who">Any Small Business</div>
+        <h3>&ldquo;I got an email that looked exactly like my vendor&rdquo;</h3>
+        <p>Phishing and fake invoices hit small businesses harder than big ones &mdash; because there's
+        nobody checking. One wrong wire transfer can cost you everything. We set up the simple
+        protections that stop this before it starts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-inner">
+    <div class="section-label reveal">What we actually do</div>
+    <h2 class="section-heading reveal">Measured, not guessed</h2>
+    <p class="section-sub reveal">
+      We don't sell you a box and disappear. Every change is tracked, every
+      fix is documented, and you can see exactly what's running and why.
+    </p>
+    <div class="services-grid reveal">
+      <div class="service-item">
+        <div class="service-tag">Networks</div>
+        <h3>Wi-Fi &amp; Network Setup</h3>
+        <p>Separate your business traffic from your guest traffic. Get your cameras, POS,
+        and office machines on networks that actually make sense. Stop hoping it works.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-tag">Security</div>
+        <h3>Lock the Doors</h3>
+        <p>Passwords, updates, who can access what &mdash; the basics that 90% of small businesses
+        skip. We handle it so you don't have to think about it.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-tag">Backup</div>
+        <h3>Real Backups</h3>
+        <p>Not &ldquo;I think it's saving to the cloud.&rdquo; Actual, tested, verified backups that
+        you can restore from tomorrow if the worst happens today.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-tag">Automation</div>
+        <h3>Stop Doing It By Hand</h3>
+        <p>If you're entering the same data in three places, or running a process the
+        same way every week, we can probably automate it. Saves time, reduces mistakes.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-tag">Monitoring</div>
+        <h3>Someone's Actually Watching</h3>
+        <p>We monitor your systems the same way we monitor our own &mdash; with real tools
+        that alert us when something goes wrong, not after you notice it's broken.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-tag">Documentation</div>
+        <h3>Written Down, Not In Someone's Head</h3>
+        <p>Every password, every setting, every device &mdash; documented in a way that doesn't
+        disappear when one person leaves. Your business shouldn't depend on one person's memory.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AG SECTION -->
+<section class="ag-section" id="ag">
+  <div class="section-inner">
+    <div class="section-label reveal">For farms &amp; ag operations</div>
+    <h2 class="section-heading reveal">Your tractor has more computers than your office</h2>
+    <p class="section-sub reveal">
+      Agriculture is the seventh most-targeted industry for cyberattacks in the country.
+      Farm operations are running on connected technology now &mdash; but the office, the network,
+      and the data management haven't kept up.
+    </p>
+    <div class="ag-concerns">
+      <div class="ag-item reveal">
+        <div class="ag-icon">&#127806;</div>
+        <div>
+          <h4>Data scattered everywhere</h4>
+          <p>Deere Operations Center, Climate FieldView, Bushel, your crop insurance files,
+          QuickBooks &mdash; none of them talk to each other. We help organize what you've got
+          and keep it backed up.</p>
+        </div>
+      </div>
+      <div class="ag-item reveal">
+        <div class="ag-icon">&#128274;</div>
+        <div>
+          <h4>Farm office wide open</h4>
+          <p>The computer that handles payroll, grain contracts, and equipment financing
+          probably has no backup plan and the same password as your email. That's fixable
+          in an afternoon.</p>
+        </div>
+      </div>
+      <div class="ag-item reveal">
+        <div class="ag-icon">&#128225;</div>
+        <div>
+          <h4>One network for everything</h4>
+          <p>Grain bin sensors, security cameras, the house, the shop, the office &mdash; all on
+          one router from 2018. We separate things properly so a problem in one place
+          doesn't take down everything.</p>
+        </div>
+      </div>
+      <div class="ag-item reveal">
+        <div class="ag-icon">&#9993;</div>
+        <div>
+          <h4>Fake invoices and wire fraud</h4>
+          <p>When you're wiring $200K for seed or equipment, one spoofed email from &ldquo;the dealer&rdquo;
+          can be catastrophic. Simple email protections stop this before it starts.</p>
+        </div>
+      </div>
+      <div class="ag-item reveal">
+        <div class="ag-icon">&#128203;</div>
+        <div>
+          <h4>Reporting requirements coming</h4>
+          <p>Carbon credit programs, sustainability documentation, grain buyer data requests &mdash;
+          all require organized, trustworthy records. Better to get ahead of it than scramble later.</p>
+        </div>
+      </div>
+      <div class="ag-item reveal">
+        <div class="ag-icon">&#128295;</div>
+        <div>
+          <h4>Vendor lock-in questions</h4>
+          <p>Who actually has access to your yield data? What's Deere collecting? What happens
+          when you want to switch platforms? We help you understand what you're sharing
+          and with whom.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section>
+  <div class="section-inner">
+    <div class="section-label reveal">How it works</div>
+    <h2 class="section-heading reveal">Three steps. No jargon.</h2>
+    <div class="how-steps">
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <h3>We come look</h3>
+        <p>Free 30-minute walkthrough of your setup. We look at your network, your devices,
+        your backups, and your biggest risks. You get an honest list of what matters
+        and what doesn't.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">02</div>
+        <h3>Fix what matters first</h3>
+        <p>We start with the things that will actually hurt you if they fail &mdash; backups,
+        passwords, network separation. Small projects, clear pricing, nothing you
+        didn't agree to.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">03</div>
+        <h3>Keep it running</h3>
+        <p>Monthly check-ins, monitoring, updates. We keep things working so you can
+        focus on your actual business. When something breaks, you call one number.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DASHBOARD TEASER -->
+<section class="dashboard-section">
+  <div class="section-inner">
+    <div class="section-label reveal">We practice what we preach</div>
+    <h2 class="section-heading reveal">Our own infrastructure, monitored live</h2>
+    <p class="section-sub reveal">
+      We run the same monitoring and security tools on our own systems that we
+      set up for clients. This is real data from our actual infrastructure.
+    </p>
+    <div class="dash-preview reveal" id="metrics-dashboard">
+      <div class="dash-metric">
+        <div class="val">--</div>
+        <div class="label">Loading</div>
+      </div>
+    </div>
+    <p class="dash-note reveal">
+      This isn't a sales graphic &mdash; it's a live system. Ask us to show you.
+    </p>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-label reveal">About</div>
+    <h2 class="section-heading reveal">Clear to the stone</h2>
+    <div class="about-split">
+      <div class="about-text reveal">
+        <p>Haists IT Consulting is based in Wabash, Indiana and works with small
+        businesses, farms, and local offices to get their technology right &mdash;
+        without the enterprise price tag or the corporate runaround.</p>
+        <p>Every recommendation is tested on our own infrastructure first. Every
+        tool we suggest, we run ourselves. Our systems are built to the same
+        security standards used by banks and government agencies &mdash; not because
+        our clients need to meet those standards, but because that's how we know
+        the practices actually work.</p>
+        <p>We keep things small on purpose. Good work for a few people beats
+        promises to a hundred.</p>
+      </div>
+      <div class="reveal">
+        <div class="about-callout">
+          <p>&ldquo;First Light&rdquo; &mdash; In 1880, Wabash became the first city in the
+          world lit entirely by electricity. A small town proved that
+          transformative technology works. That's still the idea.</p>
+          <p class="about-detail">
+            The name means what it says. We look at your systems with fresh eyes,
+            we show you what's actually there, and we fix the things that matter.
+            Clear to the stone.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-inner">
+    <div class="section-label reveal">Get started</div>
+    <h2 class="section-heading reveal">Let's take a look</h2>
+    <div class="contact-layout">
+      <div class="contact-info reveal">
+        <h3>Free 30-minute walkthrough</h3>
+        <p>Tell us a little about your business and what's bugging you.
+        We'll come take a look, give you an honest assessment, and
+        if there's work to do, we'll quote it in plain English.</p>
+        <p>No contracts required. No pressure. If we're not the right fit,
+        we'll tell you.</p>
+        <div class="contact-detail">
+          <p>Serving Wabash County and surrounding areas</p>
+          <p>jim@haist.farm</p>
+        </div>
+      </div>
+      <form id="contact-form" class="contact-form reveal">
+        <div class="form-row">
+          <input type="text" id="name" name="name" placeholder="Your name" required>
+          <input type="text" id="company" name="company" placeholder="Business name">
+        </div>
+        <input type="email" id="email" name="email" placeholder="Email" required>
+        <input type="tel" id="phone" name="phone" placeholder="Phone (optional)">
+        <select id="interest" name="interest">
+          <option value="" disabled selected>What kind of business?</option>
+          <option value="Restaurant / Bar">Restaurant / Bar</option>
+          <option value="Farm / Ag Operation">Farm / Ag Operation</option>
+          <option value="Retail / Downtown Shop">Retail / Downtown Shop</option>
+          <option value="Professional Office">Professional Office</option>
+          <option value="Tourism / Events">Tourism / Events</option>
+          <option value="Nonprofit">Nonprofit</option>
+          <option value="Other">Other</option>
+        </select>
+        <textarea id="message" name="message" placeholder="What's going on? What's the thing that keeps bugging you?" required></textarea>
+        <button type="submit" class="btn-primary" style="width:100%;">Send It Over</button>
+        <div id="form-status" class="form-status"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-mark">Haists IT Consulting</div>
+  <div class="f-locale">Wabash, Indiana</div>
+  <div>&copy; 2026 Haists IT Consulting. All rights reserved.</div>
+  <div class="f-origin">waapaahšiiki &mdash; clear to the stone</div>
+</footer>
+
+<script src="/js/main.js"></script>
 </body>
 </html>
