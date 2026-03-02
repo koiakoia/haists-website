@@ -559,22 +559,132 @@ footer .f-origin {
   transform: translateY(0);
 }
 
+/* --- MOBILE NAV --- */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  flex-direction: column;
+  gap: 5px;
+}
+.nav-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--bark);
+  transition: all 0.3s;
+}
+.nav-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.nav-toggle.active span:nth-child(2) { opacity: 0; }
+.nav-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
 /* --- RESPONSIVE --- */
 @media (max-width: 768px) {
-  .nav-links { display: none; }
-  .hero { padding: 8rem 1.5rem 3rem; }
-  .problems-grid { grid-template-columns: 1fr; }
-  .how-steps { grid-template-columns: 1fr; gap: 2rem; }
-  .about-split { grid-template-columns: 1fr; gap: 2rem; }
-  .contact-layout { grid-template-columns: 1fr; gap: 2rem; }
-  .form-row { grid-template-columns: 1fr; }
-  .proof-inner { flex-direction: column; gap: 0.75rem; }
+  html { overflow-x: hidden; }
+
+  .nav-toggle { display: flex; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--warm-white);
+    border-bottom: 1px solid var(--border);
+    flex-direction: column;
+    padding: 1.5rem 2rem;
+    gap: 0;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 1rem;
+  }
+  .nav-links a:last-child { border-bottom: none; }
+  .nav-cta {
+    margin-top: 0.75rem;
+    text-align: center;
+    padding: 0.75rem 1.2rem !important;
+  }
+
+  .hero { padding: 7rem 1.5rem 3rem; }
+  .hero-sub { font-size: 1rem; margin-bottom: 2rem; }
+  .hero-actions { flex-direction: column; align-items: center; }
+  .hero-actions .btn-primary,
+  .hero-actions .btn-secondary { width: 100%; text-align: center; }
+
+  .proof-bar { padding: 1.5rem 1.5rem; }
+  .proof-inner { flex-direction: column; gap: 0.75rem; text-align: center; }
+  .proof-badge { justify-content: center; }
   .proof-sep { display: none; }
-  section { padding: 3.5rem 1.5rem; }
+
+  section { padding: 3rem 1.25rem; }
+  .section-heading { font-size: 1.5rem; }
+  .section-sub { font-size: 0.95rem; }
+
+  .problems-grid { grid-template-columns: 1fr; gap: 1.25rem; margin-top: 2rem; }
+  .problem-card { padding: 1.5rem; }
+  .problem-card h3 { font-size: 1.05rem; }
+
+  .services-grid { grid-template-columns: 1fr; margin-top: 2rem; }
+  .service-item { padding: 1.5rem; }
+
+  .ag-concerns { grid-template-columns: 1fr; margin-top: 2rem; }
+
+  .how-steps { grid-template-columns: 1fr; gap: 2rem; margin-top: 2rem; }
+  .step-num { font-size: 2rem; }
+
+  .dash-preview { grid-template-columns: 1fr 1fr; padding: 1.25rem; gap: 1rem; }
+  .dash-metric { padding: 0.75rem 0.5rem; }
+  .dash-metric .val { font-size: 1.6rem; }
+
+  .about-split { grid-template-columns: 1fr; gap: 2rem; margin-top: 2rem; }
+  .about-callout { padding: 1.25rem 1.5rem; }
+
+  .contact-layout { grid-template-columns: 1fr; gap: 2rem; margin-top: 2rem; }
+  .form-row { grid-template-columns: 1fr; }
+
+  footer { padding: 2rem 1.5rem; }
 }
 
 @media (max-width: 480px) {
-  .hero h1 { font-size: 1.8rem; }
-  .services-grid { grid-template-columns: 1fr; }
-  .dash-preview { grid-template-columns: 1fr 1fr; }
+  body { font-size: 16px; }
+
+  .hero { padding: 6rem 1.25rem 2.5rem; }
+  .hero h1 { font-size: 1.65rem; }
+  .hero-locale { font-size: 0.72rem; letter-spacing: 0.1em; }
+  .hero-sub { font-size: 0.92rem; }
+
+  section { padding: 2.5rem 1rem; }
+  .section-heading { font-size: 1.35rem; }
+
+  .proof-bar { padding: 1.25rem 1rem; }
+  .proof-badge { font-size: 0.78rem; }
+
+  .problems-grid { gap: 1rem; }
+  .problem-card { padding: 1.25rem; }
+  .problem-card h3 { font-size: 1rem; }
+  .problem-card p { font-size: 0.88rem; }
+
+  .service-item { padding: 1.25rem; }
+
+  .ag-item { gap: 0.75rem; }
+  .ag-icon { width: 36px; height: 36px; font-size: 1rem; }
+
+  .dash-preview { grid-template-columns: 1fr 1fr; padding: 1rem; }
+  .dash-metric .val { font-size: 1.4rem; }
+  .dash-metric .label { font-size: 0.7rem; }
+
+  .about-text p { font-size: 0.92rem; }
+  .about-callout p { font-size: 0.92rem; }
+
+  .contact-info h3 { font-size: 1.15rem; }
+  .contact-form input,
+  .contact-form textarea,
+  .contact-form select { font-size: 16px; padding: 0.75rem 0.85rem; }
+
+  footer { font-size: 0.78rem; }
 }

@@ -4,6 +4,20 @@ window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 20);
 });
 
+// Mobile nav toggle
+const navToggle = document.getElementById('nav-toggle');
+const navLinks = document.getElementById('nav-links');
+navToggle.addEventListener('click', () => {
+  navToggle.classList.toggle('active');
+  navLinks.classList.toggle('open');
+});
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    navToggle.classList.remove('active');
+    navLinks.classList.remove('open');
+  });
+});
+
 // Scroll reveal
 const reveals = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver((entries) => {
