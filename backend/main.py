@@ -1,3 +1,4 @@
+import asyncio
 import logging
 import time
 from contextlib import asynccontextmanager
@@ -86,10 +87,12 @@ async def get_metrics():
     except HTTPException:
         raise HTTPException(502, "Metrics temporarily unavailable")
 
-    async with httpx.AsyncClient(verify=False, timeout=10.0) as client:
-        overview = await _fetch_api(client, token, "/api/overview")
-        infra = await _fetch_api(client, token, "/api/infrastructure")
-        security = await _fetch_api(client, token, "/api/security")
+    async with httpx.AsyncClient(verify=False, timeout=20.0) as client:
+        overview, infra, security = await asyncio.gather(
+            _fetch_api(client, token, "/api/overview"),
+            _fetch_api(client, token, "/api/infrastructure"),
+            _fetch_api(client, token, "/api/security"),
+        )
 
     # Extract only the counts needed for the public dashboard — nothing else
     nodes_online = sum(
