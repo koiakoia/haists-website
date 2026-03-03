@@ -5,20 +5,43 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Haists IT Consulting — Small business IT, security, and infrastructure for Wabash County, Indiana">
 <meta property="og:title" content="Haists IT Consulting — Wabash, Indiana">
-<meta property="og:description" content="Small business IT, security, and infrastructure for Wabash County. We eat our own cooking.">
+<meta property="og:description" content="Small business IT, security, and infrastructure consulting for Wabash County, Indiana. Network setup, cybersecurity, backups, and monitoring — we eat our own cooking.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.haist.farm">
 <meta property="og:image" content="https://www.haist.farm/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://www.haist.farm/">
 <title>Haists IT Consulting — Wabash, Indiana</title>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Haists IT Consulting",
+  "description": "Small business IT, security, and infrastructure consulting for Wabash County, Indiana",
+  "url": "https://www.haist.farm",
+  "areaServed": {
+    "@type": "AdministrativeArea",
+    "name": "Wabash County, Indiana"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Wabash",
+    "addressRegion": "IN",
+    "addressCountry": "US"
+  },
+  "priceRange": "$",
+  "serviceType": ["IT Consulting", "Network Setup", "Cybersecurity", "Backup Solutions", "IT Monitoring"]
+}
+</script>
 <link rel="icon" type="image/svg+xml" sizes="32x32" href="/favicon-32.svg">
 <link rel="icon" type="image/svg+xml" sizes="16x16" href="/favicon-16.svg">
 <script>
 if(localStorage.getItem('theme')==='dark')document.documentElement.setAttribute('data-theme','dark');
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -734,9 +757,69 @@ section,
 }
 
 /* --- RESPONSIVE --- */
+/* --- HAMBURGER --- */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 101;
+}
+.nav-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 1px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+.nav-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.nav-toggle.active span:nth-child(2) { opacity: 0; }
+.nav-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+/* --- ACCESSIBILITY --- */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.skip-link { position: absolute; top: -100%; left: 1rem; background: var(--field); color: #fff; padding: 0.5rem 1rem; border-radius: 0 0 6px 6px; z-index: 200; font-size: 0.85rem; font-weight: 500; }
+.skip-link:focus { top: 0; }
+
+/* --- PRIVACY + CONTACT/FOOTER LINKS --- */
+.privacy-note { font-size: 0.78rem; color: var(--stone); text-align: center; margin-top: 0.5rem; line-height: 1.5; }
+.contact-detail a { color: var(--stone); }
+.contact-detail a:hover { color: var(--field); }
+footer a { color: rgba(255,255,255,0.5); }
+footer a:hover { color: rgba(255,255,255,0.7); }
+
 .nav-right { display: flex; align-items: center; gap: 1rem; }
 @media (max-width: 768px) {
-  .nav-links { display: none; }
+  .nav-toggle { display: flex; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--nav-bg);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    flex-direction: column;
+    padding: 1rem 2rem;
+    gap: 0;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 1rem;
+  }
+  .nav-links a:last-child { border-bottom: none; }
+  .nav-cta {
+    margin-top: 0.5rem;
+    text-align: center;
+    padding: 0.75rem 1.2rem !important;
+  }
   .hero { padding: 8rem 1.5rem 3rem; }
   .problems-grid { grid-template-columns: 1fr; }
   .how-steps { grid-template-columns: 1fr; gap: 2rem; }
@@ -779,8 +862,14 @@ section,
 .scroll-top.visible { opacity: 1; pointer-events: auto; }
 .scroll-top:hover { transform: scale(1.1); }
 </style>
+<noscript>
+  <style>
+    .reveal { opacity: 1; transform: none; }
+  </style>
+</noscript>
 </head>
 <body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 
 <!-- NAV -->
 <nav id="nav">
@@ -798,7 +887,12 @@ section,
       </svg>
     </a>
     <div class="nav-right">
-      <div class="nav-links">
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-links" id="nav-links">
         <a href="#problems">Who We Help</a>
         <a href="#services">Services</a>
         <a href="#ag">Agriculture</a>
@@ -815,7 +909,7 @@ section,
 </nav>
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero" id="main-content">
   <div class="hero-locale reveal">Wabash, Indiana &mdash; Since the first light</div>
   <h1 class="reveal">Your business runs on technology.<br><em>Who's watching it?</em></h1>
   <p class="hero-sub reveal">
@@ -1168,16 +1262,26 @@ section,
         we'll tell you.</p>
         <div class="contact-detail">
           <p>Serving Wabash County and surrounding areas</p>
-          <p>jim@haist.farm</p>
+          <p><a href="mailto:jim@haist.farm">jim@haist.farm</a></p>
+          <p><a href="tel:+1XXXXXXXXXX">XXX-XXX-XXXX</a></p>
         </div>
       </div>
       <form id="contact-form" class="contact-form reveal">
         <div class="form-row">
-          <input type="text" id="name" name="name" placeholder="Your name" required>
-          <input type="text" id="company" name="company" placeholder="Business name">
+          <div>
+            <label for="name" class="sr-only">Your name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" required>
+          </div>
+          <div>
+            <label for="company" class="sr-only">Business name</label>
+            <input type="text" id="company" name="company" placeholder="Business name" autocomplete="organization">
+          </div>
         </div>
-        <input type="email" id="email" name="email" placeholder="Email" required>
-        <input type="tel" id="phone" name="phone" placeholder="Phone (optional)">
+        <label for="email" class="sr-only">Email</label>
+        <input type="email" id="email" name="email" placeholder="Email" autocomplete="email" required>
+        <label for="phone" class="sr-only">Phone</label>
+        <input type="tel" id="phone" name="phone" placeholder="Phone (optional)" autocomplete="tel">
+        <label for="interest" class="sr-only">What kind of business?</label>
         <select id="interest" name="interest">
           <option value="" disabled selected>What kind of business?</option>
           <option value="Restaurant / Bar">Restaurant / Bar</option>
@@ -1188,9 +1292,11 @@ section,
           <option value="Nonprofit">Nonprofit</option>
           <option value="Other">Other</option>
         </select>
+        <label for="message" class="sr-only">Message</label>
         <textarea id="message" name="message" placeholder="What's going on? What's the thing that keeps bugging you?" required></textarea>
         <button type="submit" class="btn-primary" style="width:100%;">Send It Over</button>
         <div id="form-status" class="form-status"></div>
+        <p class="privacy-note">We don't sell your information. We use it to get in touch about what you asked about. That's it.</p>
       </form>
     </div>
   </div>
@@ -1202,6 +1308,7 @@ section,
 <footer>
   <div class="f-mark">Haists IT Consulting</div>
   <div class="f-locale">Wabash, Indiana</div>
+  <div><a href="tel:+1XXXXXXXXXX">XXX-XXX-XXXX</a></div>
   <div>&copy; 2026 Haists IT Consulting. All rights reserved.</div>
   <div class="f-origin">waapaahšiiki &mdash; clear to the stone</div>
 </footer>
@@ -1211,6 +1318,20 @@ section,
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// Mobile nav toggle
+const navToggle = document.getElementById('nav-toggle');
+const navLinks = document.getElementById('nav-links');
+navToggle.addEventListener('click', () => {
+  navToggle.classList.toggle('active');
+  navLinks.classList.toggle('open');
+});
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    navToggle.classList.remove('active');
+    navLinks.classList.remove('open');
+  });
 });
 
 // Scroll reveal
